@@ -1,0 +1,127 @@
+html, body {
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background: #181828;
+}
+
+main {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 1. Moving gradients (background base) */
+.bg-base {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(130deg, #ff90e8 0%, #7bc6ff 50%, #ffd86f 100%);
+  filter: blur(20px) brightness(0.9);
+  opacity: 0.8;
+  animation: bg-move 8s linear infinite alternate;
+}
+@keyframes bg-move {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 100% 50%;
+  }
+}
+
+/* 2. Gradient overlay for extra depth */
+.gradient-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background: radial-gradient(circle at 60% 40%, rgba(255,255,255,0.18) 0%, rgba(0,0,0,0.13) 100%);
+  mix-blend-mode: screen;
+  pointer-events: none;
+}
+
+/* 3. Animated Blobs */
+.blob {
+  position: absolute;
+  border-radius: 43% 57% 62% 38% / 53% 42% 58% 47%;
+  filter: blur(8px) brightness(1.15) drop-shadow(0 0 40px #fff7);
+  opacity: 0.86;
+  z-index: 3;
+  mix-blend-mode: lighten;
+}
+.blob1 {
+  width: 430px;
+  height: 430px;
+  top: 22%;
+  left: 40%;
+  background: linear-gradient(135deg, #ff6fd8 0%, #3813c2 100%);
+  animation: blob1-move 8s ease-in-out infinite alternate;
+}
+@keyframes blob1-move {
+  0% { transform: translate(0,0) scale(1) rotate(0deg); }
+  40% { transform: translate(15px, 50px) scale(1.05) rotate(18deg); }
+  60% { transform: translate(-35px, 30px) scale(0.95) rotate(-12deg); }
+  100% { transform: translate(20px, -40px) scale(1.08) rotate(8deg); }
+}
+
+.blob2 {
+  width: 280px;
+  height: 330px;
+  top: 48%;
+  left: 55%;
+  background: linear-gradient(120deg, #6fffd8 0%, #2b7cff 100%);
+  animation: blob2-move 10s ease-in-out infinite alternate;
+}
+@keyframes blob2-move {
+  0% { transform: translate(0,0) scale(1) rotate(0deg); }
+  30% { transform: translate(-25px, -35px) scale(1.08) rotate(14deg); }
+  60% { transform: translate(10px, 20px) scale(0.92) rotate(-12deg); }
+  100% { transform: translate(30px, -10px) scale(1.05) rotate(9deg); }
+}
+
+.blob3 {
+  width: 250px;
+  height: 180px;
+  top: 63%;
+  left: 35%;
+  background: linear-gradient(110deg, #ffe76f 0%, #ff6f91 100%);
+  animation: blob3-move 7.5s ease-in-out infinite alternate;
+}
+@keyframes blob3-move {
+  0% { transform: translate(0,0) scale(1) rotate(0deg); }
+  45% { transform: translate(15px, 40px) scale(1.04) rotate(-10deg); }
+  80% { transform: translate(-25px, 10px) scale(1.12) rotate(15deg); }
+  100% { transform: translate(0, 0) scale(0.98) rotate(-7deg); }
+}
+
+/* 4. CSS-Only Noise / Grain Effect */
+.noise {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  pointer-events: none;
+  mix-blend-mode: soft-light;
+  opacity: 0.18;
+  background: repeating-conic-gradient(rgba(255,255,255,0.11) 0% 4%,rgba(0,0,0,0.06) 4% 8%) 50% 50%/26px 26px;
+  animation: noise-move 0.7s steps(2) infinite;
+}
+@keyframes noise-move {
+  0% { background-position: 0 0; }
+  100% { background-position: 40px 60px; }
+}
+
+/* Responsive for vertical screens */
+@media (min-aspect-ratio: 9/16) {
+  main {
+    width: 1080px;
+    height: 1920px;
+    margin: auto;
+    box-shadow: 0 0 96px 0 #000d;
+    border-radius: 2vw;
+  }
+}
